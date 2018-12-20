@@ -33,6 +33,3 @@ Dockerfile
 /house-web/logs
 /house-web/src/resources/application-prod.properties
 /house-web/src/resources/application-uat.properties
-.mvn
-mvnw
-mvnw.cmd
