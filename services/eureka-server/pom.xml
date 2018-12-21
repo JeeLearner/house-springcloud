@@ -3,35 +3,32 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>cn.jeelearn.house.user</groupId>
-	<artifactId>user-service</artifactId>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.7.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>cn.jeelearn.house</groupId>
+	<artifactId>eureka-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>user-service</name>
-	<description>user service project for house</description>
+	<name>eureka-server</name>
+	<description>注册中心</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<springboot.version>1.4.7.RELEASE</springboot.version>
-		<springcloud.version>Camden.SR7</springcloud.version>
+		<spring-cloud.version>Camden.SR7</spring-cloud.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
 
 		<dependency>
@@ -39,47 +36,28 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.2.0</version>
-		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<!-- Import dependency management from Spring Boot -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${springboot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-				<!--  我们一贯习惯以import的方式来导入spring boot和spring cloud，
-				所以我们这里改变引入方式，将parent删除然后将spring boot import进来好了，一个拥有spring cloud的sping boot工程就创建好了
-				那么引入spring cloud dependencies有什么好处呢，和spring boot dependencies一样，为我们进行版本管理，这里版本管理是组件的版本，它可以提供给我们一套兼容的组件；
-					而无需我们关心版本也不用在pom中输入版本，比如我们这里的Eureka为例，我们无需输入版本号 -->
-			</dependency>
-			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${springcloud.version}</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
+	<!--<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>-->
 	<build>
 		<directory>${project.basedir}/target</directory>
 		<outputDirectory>${project.build.directory}/classes</outputDirectory>
@@ -105,7 +83,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>1.4.7.RELEASE</version>
 				<configuration>
-					<mainClass>cn.jeelearn.house.user.UserServiceApplication</mainClass>
+					<mainClass>cn.jeelearn.house.EurekaserverApplication</mainClass>
 					<layout>ZIP</layout>
 				</configuration>
 				<executions>
@@ -131,5 +109,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
