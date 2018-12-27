@@ -1,7 +1,6 @@
-package cn.jeelearn.house.api.config;
+package cn.jeelearn.house.user.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
-import com.google.common.collect.Lists;
 import org.apache.http.client.HttpClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @Description:

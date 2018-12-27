@@ -1,4 +1,4 @@
-package cn.jeelearn.house.api.config;
+package cn.jeelearn.house.user.common;
 
 /**
  * @Description: 建造者模式

@@ -1,4 +1,4 @@
-package cn.jeelearn.house.api.config;
+package cn.jeelearn.house.user.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

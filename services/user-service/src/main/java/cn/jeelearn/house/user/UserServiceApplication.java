@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+//@RibbonClient(name = "user-service", configuration = NewRuleConfig.class)
 public class UserServiceApplication {
 
 	public static void main(String[] args) {

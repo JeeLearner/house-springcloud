@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.httpclient.agent",
+      "type": "java.lang.String",
+      "description": "Description for spring.httpclient.agent."
+  }
+] }
