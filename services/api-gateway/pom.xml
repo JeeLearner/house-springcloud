@@ -24,7 +24,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-ribbon</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -59,6 +59,22 @@
 		</dependency>
 		<!--logbook end-->
 
+		<!--db-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -68,6 +84,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 

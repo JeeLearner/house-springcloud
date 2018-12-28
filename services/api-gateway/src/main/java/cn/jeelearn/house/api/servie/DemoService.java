@@ -20,7 +20,7 @@ public class DemoService {
     private GenericRest rest;
 
     public String getUsername(Long id){
-        String url = "http://user-service/getUsername?id=" + id;
+        String url = "http://user-UserService/getUsername?id=" + id;
         //这里返回的是整个结果，不是我们要的  {"code":0,"msg":"OK","result":"test-username"}
         //String body = rest.get(url, new ParameterizedTypeReference<String>() {}).getBody();
         //ParameterizedTypeReference需要深度泛型

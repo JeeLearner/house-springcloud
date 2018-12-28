@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @SpringBootApplication
-//@EnableDiscoveryClient
-@RibbonClient(name = "user-service", configuration = NewRuleConfig.class)
+@EnableDiscoveryClient
+//@RibbonClient(name = "user-UserService", configuration = NewRuleConfig.class)
 @Controller
 public class ApiGatewayApplication {
 
@@ -31,7 +31,7 @@ public class ApiGatewayApplication {
 	@RequestMapping("index1")
 	@ResponseBody
 	public List<ServiceInstance> getRegister(){
-		return discoveryClient.getInstances("user-service");
+		return discoveryClient.getInstances("user-UserService");
 	}
 
 }
