@@ -34,5 +34,42 @@ public class UserController {
         User user = userService.getUserById(id);
         return RestResponse.success(user);
     }
+
+    //-------------------注册---------------------
+    @PostMapping("add")
+    public RestResponse<User> add(@RequestBody User user){
+        userService.addAccount(user,user.getEnableUrl());
+        return RestResponse.success();
+    }
+
+    /**
+     * 主要激活key的验证
+     */
+    @GetMapping("enable")
+    public RestResponse<Object> enable(String key){
+        userService.enable(key);
+        return RestResponse.success();
+    }
+
+    //------------------------登录--------------------------
+    @PostMapping("login")
+    public RestResponse<User> login(@RequestBody User user){
+        User finalUser = userService.login(user.getEmail(),user.getPasswd());
+        return RestResponse.success(finalUser);
+    }
+
+    @GetMapping("logout")
+    public RestResponse<Object> logout(String token){
+        userService.invalidate(token);
+        return RestResponse.success();
+    }
+
+    //------------------------鉴权--------------------------
+    @GetMapping("auth")
+    public RestResponse<User> getAuthUser(String token){
+        User finalUser = userService.getLoginedUserByToken(token);
+        return RestResponse.success(finalUser);
+    }
+
 }
 

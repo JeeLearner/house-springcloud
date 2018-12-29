@@ -12,6 +12,10 @@ public class RestResponse<T> {
     private String msg;
     private T result;
 
+    public static <T> RestResponse<T> success(){
+        return new RestResponse<T>();
+    }
+
     public static <T> RestResponse<T> success(T result){
         RestResponse<T> response = new RestResponse<T>();
         response.setResult(result);

@@ -1,6 +1,7 @@
 package cn.jeelearn.house.user.common;
 
 import cn.jeelearn.house.user.exception.IllegalParamsException;
+import cn.jeelearn.house.user.exception.UserException;
 import cn.jeelearn.house.user.exception.WithTypeException;
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -17,6 +18,9 @@ public class Exception2CodeRepo {
     private static final ImmutableMap<Object, RestCode> MAP = ImmutableMap.<Object, RestCode>builder()
             .put(IllegalParamsException.Type.WRONG_PAGE_NUM, RestCode.WRONG_PAGE)
             .put(IllegalStateException.class, RestCode.UNKNOWN_ERROR)
+            .put(UserException.Type.USER_NOT_LOGIN,RestCode.TOKEN_INVALID)
+            .put(UserException.Type.USER_NOT_FOUND,RestCode.USER_NOT_EXIST)
+            .put(UserException.Type.USER_AUTH_FAIL,RestCode.USER_NOT_EXIST)
             .build();
 
 
