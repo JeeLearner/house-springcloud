@@ -63,5 +63,10 @@ public class AgencyService {
         }
         return null;
     }
+
+    //-----------------agency-----------------
+    public List<Agency> getAllAgency(){
+        return agencyMapper.select(new Agency());
+    }
 }
 

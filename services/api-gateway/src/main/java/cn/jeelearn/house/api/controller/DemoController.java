@@ -1,7 +1,7 @@
 package cn.jeelearn.house.api.controller;
 
 import cn.jeelearn.house.api.common.RestResponse;
-import cn.jeelearn.house.api.servie.DemoService;
+import cn.jeelearn.house.api.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

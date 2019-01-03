@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.Instant;
@@ -156,6 +157,7 @@ public class UserService {
         if(expire > 0L){
             renewToken(token, email);
             User user = userMapper.selectByEmail(email);
+            user.setToken(token);
             return user;
         }
         throw new UserException(Type.USER_NOT_LOGIN,"user not login");
@@ -169,6 +171,18 @@ public class UserService {
         Map<String, String> map = JwtHelper.verifyToken(token);
         //delete后过期时间变为-1
         redisTemplate.delete(map.get("email"));
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public User updateUser(User user) {
+        if (user.getEmail() == null) {
+            return null;
+        }
+        if (!Strings.isNullOrEmpty(user.getPasswd()) ) {
+            user.setPasswd(HashUtils.encryPassword(user.getPasswd()));
+        }
+        userMapper.update(user);
+        return userMapper.selectByEmail(user.getEmail());
     }
 
     /**

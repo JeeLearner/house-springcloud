@@ -55,5 +55,11 @@ public class AgencyController {
         User user = agencyService.getAgentDetail(id);
         return RestResponse.success(user);
     }
+
+    @GetMapping("list")
+    public RestResponse<List<Agency>> agencyList() {
+        List<Agency> agencies = agencyService.getAllAgency();
+        return RestResponse.success(agencies);
+    }
 }
 

@@ -71,5 +71,12 @@ public class UserController {
         return RestResponse.success(finalUser);
     }
 
+    //------------------------个人信息--------------------------
+    @RequestMapping("update")
+    public RestResponse<User> update(@RequestBody User user){
+        User updateUser = userService.updateUser(user);
+        return RestResponse.success(updateUser);
+    }
+
 }
 

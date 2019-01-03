@@ -9,6 +9,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * @Description:
  * @Auther: lyd
@@ -41,6 +44,12 @@ public class DemoController {
        redisTemplate.opsForValue().set("key1", "value1");
        LOGGER.info("Test Redis :" + redisTemplate.opsForValue().get("key1"));
         return RestResponse.success("test-username,port=" + port);
+    }
+
+    public static void main(String[] args) {
+        DateTimeFormatter yyyy = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String format = yyyy.format(LocalDateTime.now());
+        System.out.println(format);
     }
 }
 
