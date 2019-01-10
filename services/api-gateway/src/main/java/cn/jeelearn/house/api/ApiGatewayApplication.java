@@ -1,6 +1,5 @@
 package cn.jeelearn.house.api;
 
-import cn.jeelearn.house.api.config.NewRuleConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -104,7 +104,7 @@ public class UserController {
         return "/user/accounts/profile";
     }
 
-    @PostMapping("/profile")
+    @PostMapping("/profileSubmit")
     public String profileSubmit(HttpServletRequest req,User updateUser,ModelMap  model){
         if (updateUser.getEmail() == null) {
             return "redirect:/accounts/profile?" + ResultMsg.errorMsg("邮箱不能为空").asUrlParams();

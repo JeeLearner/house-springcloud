@@ -108,5 +108,14 @@ public class UserDao {
             return responseEntity.getBody();
         }).getResult();
     }
+
+    public User getAgentById(Long userId) {
+        return Rests.exc(() ->{
+            String url = Rests.toUrl(userServiceName, "/agency/agentDetail?id=" +userId);
+            ResponseEntity<RestResponse<User>> responseEntity =
+                    rest.get(url, new ParameterizedTypeReference<RestResponse<User>>() {});
+            return responseEntity.getBody();
+        }).getResult();
+    }
 }
 
