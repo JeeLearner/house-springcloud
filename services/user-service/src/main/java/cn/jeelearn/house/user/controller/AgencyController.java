@@ -6,14 +6,12 @@ import cn.jeelearn.house.user.common.RestResponse;
 import cn.jeelearn.house.user.model.Agency;
 import cn.jeelearn.house.user.model.User;
 import cn.jeelearn.house.user.service.AgencyService;
-import com.google.common.collect.Lists;
 import org.apache.commons.lang3.tuple.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

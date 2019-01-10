@@ -46,10 +46,20 @@ public class DemoController {
         return RestResponse.success("test-username,port=" + port);
     }
 
+    @GetMapping("test/log")
+    public void testLog(Long id){
+        LOGGER.debug("test log is debug");
+        LOGGER.info("test log is info");
+        LOGGER.warn("test log is warn");
+        LOGGER.error("test log is error");
+        throw new RuntimeException("test error");
+    }
+
     public static void main(String[] args) {
         DateTimeFormatter yyyy = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String format = yyyy.format(LocalDateTime.now());
         System.out.println(format);
+        LOGGER.info("");
     }
 }
 

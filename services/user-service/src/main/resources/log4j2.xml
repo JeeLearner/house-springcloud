@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="debug">
+
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="APP_DIR">house</property>
+        <property name="APP_NAME">user-service</property>
+    </properties>
+
+    <appenders>
+        <Console name="STDOUT">
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
+        </Console>
+
+        <RollingRandomAccessFile name="FILE-INFO" fileName="${LOG_HOME}/${APP_NAME}-info.log"
+                filePattern="${LOG_HOME}/${APP_DIR}/${APP_NAME}-info-%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="50">
+                <Delete basePath="${LOG_HOME}/${APP_DIR}" maxDepth="2">
+                    <IfFileName glob="*${APP_NAME}-info*.log" />
+                    <IfLastModified age="90d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="FILE-WARN" fileName="${LOG_HOME}/${APP_NAME}-warn.log"
+                                 filePattern="${LOG_HOME}/${APP_DIR}/${APP_NAME}-warn-%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="50">
+                <Delete basePath="${LOG_HOME}/${APP_DIR}" maxDepth="2">
+                    <IfFileName glob="*${APP_NAME}-warn*.log" />
+                    <IfLastModified age="90d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="FILE-ERROR" fileName="${LOG_HOME}/${APP_NAME}-error.log"
+                                 filePattern="${LOG_HOME}/${APP_DIR}/${APP_NAME}-error-%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+                <SizeBasedTriggeringPolicy size="50 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="50">
+                <Delete basePath="${LOG_HOME}/${APP_DIR}" maxDepth="2">
+                    <IfFileName glob="*${APP_NAME}-error*.log" />
+                    <IfLastModified age="2d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+    </appenders>
+
+    <loggers>
+        <!--同步模式-->
+        <logger>
+
+        </logger>
+        <!--关闭swagger-->
+        <AsyncLogger name="spingfox" level="OFF"  additivity="false" />
+        <AsyncLogger name="org.springframework" level="INFO" additivity="false" />
+        <AsyncLogger name="cn.jeelearn.house.user.mapper" level="DEBUG"  additivity="false" >
+            <AppenderRef ref="STDOUT" />
+        </AsyncLogger>
+        <!-- root logger 配置,全局配置，默认所有的Logger都继承此配置 -->
+        <!-- AsyncRoot - 异步记录日志 - 需要LMAX Disruptor的支持 -->
+        <!--总的Logger,includeLocation=true表示打印行号，有一定性能开销，但是不大-->
+        <AsyncRoot level="DEBUG" includeLocation="true">
+            <AppenderRef ref="FILE-ERROR" />
+            <AppenderRef ref="FILE-WARN" />
+            <AppenderRef ref="FILE-INFO" />
+            <!--<AppenderRef ref="FILE-DEBUG" />-->
+            <AppenderRef ref="STDOUT" />
+        </AsyncRoot>
+    </loggers>
+</configuration>

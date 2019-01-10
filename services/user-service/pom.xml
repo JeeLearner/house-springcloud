@@ -92,6 +92,34 @@
 			<version>${logbook.version}</version>
 		</dependency>
 		<!--logbook end-->
+		<!--log4j2-->
+		<dependency> <!-- exclude掉spring-boot的默认log配置 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.3.6</version>
+		</dependency>
+		<!-- 加上这个才能辨认到log4j2.yml文件 --><!-- c. -->
+		<!--<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>-->
+
 
 		<!--jwt-->
 		<dependency>
