@@ -3,6 +3,7 @@ package cn.jeelearn.house.house.controller;
 import cn.jeelearn.house.house.common.*;
 import cn.jeelearn.house.house.model.*;
 import cn.jeelearn.house.house.model.req.HouseQueryReq;
+import cn.jeelearn.house.house.model.req.HouseUserReq;
 import cn.jeelearn.house.house.service.HouseService;
 import cn.jeelearn.house.house.service.RecommendService;
 import com.google.common.base.Objects;

@@ -19,12 +19,12 @@
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" />
-                <SizeBasedTriggeringPolicy size="50MB"/>
+                <SizeBasedTriggeringPolicy size="5MB"/>
             </Policies>
             <DefaultRolloverStrategy max="50">
                 <Delete basePath="${LOG_HOME}/${APP_DIR}" maxDepth="2">
                     <IfFileName glob="*${APP_NAME}-info*.log" />
-                    <IfLastModified age="90d" />
+                    <IfLastModified age="30d" />
                 </Delete>
             </DefaultRolloverStrategy>
         </RollingRandomAccessFile>
@@ -35,12 +35,12 @@
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" />
-                <SizeBasedTriggeringPolicy size="50MB"/>
+                <SizeBasedTriggeringPolicy size="5MB"/>
             </Policies>
             <DefaultRolloverStrategy max="50">
                 <Delete basePath="${LOG_HOME}/${APP_DIR}" maxDepth="2">
                     <IfFileName glob="*${APP_NAME}-warn*.log" />
-                    <IfLastModified age="90d" />
+                    <IfLastModified age="30d" />
                 </Delete>
             </DefaultRolloverStrategy>
         </RollingRandomAccessFile>
@@ -50,12 +50,12 @@
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %msg%n" charset="UTF-8" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" />
-                <SizeBasedTriggeringPolicy size="50 KB"/>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="50">
+            <DefaultRolloverStrategy max="100">
                 <Delete basePath="${LOG_HOME}/${APP_DIR}" maxDepth="2">
                     <IfFileName glob="*${APP_NAME}-error*.log" />
-                    <IfLastModified age="2d" />
+                    <IfLastModified age="90d" />
                 </Delete>
             </DefaultRolloverStrategy>
         </RollingRandomAccessFile>
@@ -71,6 +71,7 @@
         <AsyncLogger name="org.springframework" level="INFO" additivity="false" />
         <AsyncLogger name="cn.jeelearn.house.house.mapper" level="DEBUG"  additivity="false" >
             <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="FILE-ERROR" />
         </AsyncLogger>
         <!-- root logger 配置,全局配置，默认所有的Logger都继承此配置 -->
         <!-- AsyncRoot - 异步记录日志 - 需要LMAX Disruptor的支持 -->

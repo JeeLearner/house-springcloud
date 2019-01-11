@@ -1,4 +1,4 @@
-package cn.jeelearn.house.house.model;
+package cn.jeelearn.house.house.model.req;
 
 public class HouseUserReq {
 

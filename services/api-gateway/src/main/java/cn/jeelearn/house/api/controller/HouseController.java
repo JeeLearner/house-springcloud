@@ -5,10 +5,12 @@ import cn.jeelearn.house.api.common.ResultMsg;
 import cn.jeelearn.house.api.common.page.PageData;
 import cn.jeelearn.house.api.common.page.PageParams;
 import cn.jeelearn.house.api.inteceptor.UserContext;
+import cn.jeelearn.house.api.model.Comment;
 import cn.jeelearn.house.api.model.House;
 import cn.jeelearn.house.api.model.User;
 import cn.jeelearn.house.api.model.UserMsg;
 import cn.jeelearn.house.api.service.AgencyService;
+import cn.jeelearn.house.api.service.CommentService;
 import cn.jeelearn.house.api.service.HouseService;
 import com.google.common.base.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class HouseController {
     private HouseService houseService;
     @Autowired
     private AgencyService agencyService;
+    @Autowired
+	private CommentService commentService;
 
     /**
      * 1.实现分页
@@ -64,7 +68,7 @@ public class HouseController {
         //房屋详情
         House house = houseService.selectOneHouse(id);
         //评论列表
-        //List<Comment> comments = commentService.selectComments(id, 8);
+        List<Comment> comments = commentService.getHouseComments(id);
 		//热门房产
 		List<House> rcHouses =  houseService.getHotHouse(CommonConstants.RECOM_SIZE);
 		//房屋关联的经纪人及机构信息
@@ -75,7 +79,7 @@ public class HouseController {
 		}
         map.put("recomHouses", rcHouses);
         map.put("house", house);
-        //map.put("commentList", comments);
+        map.put("commentList", comments);
         return "/house/detail";
     }
 
